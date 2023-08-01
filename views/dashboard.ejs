@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+    <h1>Welcome <%= user.username %></h1>
+    <p>Email: <%= user.email %></p>
+    <div class="center-container">
+        <a href="/admin/logout">
+            <button>LogOut</button>
+        </a>
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar-logo">Admin Panel</div>
+        <ul class="navbar-menu">
+            <li><a href="/admin/dashboard/scroller">Scroller</a></li>
+            <li><a href="/admin/dashboard/internships">Internships</a></li>
+            <li><a href="/admin/dashboard/events">Events</a></li>
+            <li><a href="/admin/dashboard/updates">News And Updates</a></li>
+        </ul>
+    </nav>
+
+    
+    <h1>EVENT CRUD OPERATIONS</h1>
+    <div class="event-cards-container">
+        <% events.forEach(event => { %>
+           
+            <div class="event-card">
+                <div class="event-thumbnail">
+                    <img src="/<%= event.eventsImage.replace(/\\/g, '/') %>" alt="Event Thumbnail">
+                </div>
+                <div class="event-details">
+                    <h2 class="event-title"><%= event.eventsTitle %></h2>
+                    <p class="event-date"><%= event.eventsDate %></p>
+                    <p class="event-date"><%= event.eventsMonth %></p>
+                    <p class="event-time"><%= event.eventsTimings %></p>
+                    <p class="event-description"><%= event.eventsDetails %></p>
+                    <p class="event-speaker">Speaker: <%= event.eventsSpeaker %></p>
+                    <a href="/admin/dashboard/event/edit/<%= event.id %>" class="event-link">Edit</a>
+                    <a href="/admin/dashboard/event/delete/<%= event.id %>" class="event-link">Delete</a> 
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+</body>
+</html>
